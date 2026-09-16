@@ -1,0 +1,523 @@
+{
+  "version": 2,
+  "source_of_truth": [
+    "NOVO-CLIPE/",
+    "referencias/"
+  ],
+  "policy": {
+    "ai_generations": 0,
+    "generated_or_reconstructed_print_details": false,
+    "technical_masters": "Original JPG bytes, SHA-256 verified after copy",
+    "technical_previews": "Proportional downscale only; lossless WebP encoding, not full-resolution masters",
+    "scenes": "Approved new-film images; proportional downscale only; WebP quality 90",
+    "film": "Approved final MP4 copied without alteration; Spanish captions already burned in; no old VTT",
+    "poster": "/assets/v2/finale-wide.webp",
+    "old_assets": "Preserved, never deleted by this script"
+  },
+  "assets": [
+    {
+      "id": "xibalba",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/Clip 01-02 — UV.png",
+        "bytes": 1808435,
+        "sha256": "f555000eaf1483ef02d1242edb0284be67e09550f8412b783fad5834038c3c61",
+        "width": 1384,
+        "height": 779,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/xibalba-wide.webp",
+          "bytes": 265898,
+          "sha256": "f483e2ff5408e77a97eb55c4e0f721c1f8d67e8bed9be28219b0f89bee015cf6",
+          "width": 1384,
+          "height": 779,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/xibalba-mobile.webp",
+          "bytes": 154162,
+          "sha256": "5846751960ee9d81a35b4179fd525512c90f7d94b0b044d5cac2b992966b17aa",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "daylight",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/Clip 01-02 — DAYLIGHT.png",
+        "bytes": 1706689,
+        "sha256": "3d8a2ca6c9a7992bff200e73883ef437f0e9899c50eea3f34dcd8e599581574e",
+        "width": 1384,
+        "height": 779,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/daylight-wide.webp",
+          "bytes": 239730,
+          "sha256": "a017489d9d012ee3f6dd8feee62cfa329263ad5ad91211e0758f0aeced5e9405",
+          "width": 1384,
+          "height": 779,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/daylight-mobile.webp",
+          "bytes": 137420,
+          "sha256": "17920aa826e16f367e8a60fcf2bbe16a40e3c9156941f8f2472deb9ff93a612e",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ceiba",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/Clip 01-02 — Composição B Ceiba exterior.png",
+        "bytes": 2906736,
+        "sha256": "94ac734a08e2a939be91836a1063d4c8b09d3f0c2da3c38ccace1a26164c9a84",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/ceiba-wide.webp",
+          "bytes": 477962,
+          "sha256": "30f14ffe0132c6403d2b24baae7da953ecf97ecf5023ba72a56369301e8bf369",
+          "width": 1672,
+          "height": 941,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/ceiba-mobile.webp",
+          "bytes": 188796,
+          "sha256": "e6ab66407cef008c164ad935d5ab07f3cb95060af75a18e8753bb31f04e5df34",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "quetzal",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/Clip 03 - Quetzal.png",
+        "bytes": 2606382,
+        "sha256": "ec773ec4c49742fc152596a5955fbcf910f19267ca2619d9374e1b6ee17407c1",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/quetzal-wide.webp",
+          "bytes": 384970,
+          "sha256": "fbb75a8d62133678201dee5ba0980b8aff85c7a13af83cbd052d41d45560984b",
+          "width": 1672,
+          "height": 941,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/quetzal-mobile.webp",
+          "bytes": 164562,
+          "sha256": "9058a2cea39bb25dd26249fa91d26a7394a0b8a6a932cf9d51038a3263c1a5c1",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "tecun",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/Clip 04 — Tecún Umán humano.png",
+        "bytes": 2253988,
+        "sha256": "2ea559ba9839692218931a864c7fce1283cf19e0acbe8ea9f6bd70b8de9315d3",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/tecun-wide.webp",
+          "bytes": 246310,
+          "sha256": "01e7cec3d88bea9e143bef9f47da58ea4210e704435b11c91b996155964cff41",
+          "width": 1672,
+          "height": 941,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/tecun-mobile.webp",
+          "bytes": 105932,
+          "sha256": "1427546e02a82f236faf67b54100f521224121321e81ab877a95c324fe18d942",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "tikal",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/Clip 05 — Tikal realista v2.png",
+        "bytes": 2467307,
+        "sha256": "fa72997052e853b7f05995480a8ea364778b9b4540afc21fa6da4d3130ed9ab9",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/tikal-wide.webp",
+          "bytes": 332396,
+          "sha256": "f537c4f00d860c70ffc917cb69259ce30a90571622072342156ac70dbae55ad9",
+          "width": 1672,
+          "height": 941,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/tikal-mobile.webp",
+          "bytes": 134904,
+          "sha256": "1b3b820467a8e812cc62ff5ddeee401ea535b3603d918f4834a7f9a337187848",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "jaguar",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/Clip 06 — Jaguar.png",
+        "bytes": 2345358,
+        "sha256": "c20ed449538f8c0b93f1e0cb838f86caf7002c245e23dbab12cbae3dfd1a9ed9",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/jaguar-wide.webp",
+          "bytes": 278182,
+          "sha256": "4f2cbd5fc3ede8be94cbbac9e51766fa5bd43ea23b4c35fe2c713d75f164ab91",
+          "width": 1672,
+          "height": 941,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/jaguar-mobile.webp",
+          "bytes": 124566,
+          "sha256": "f3092767cf68d391d6386c938efc525a2e62865218c5df9573e6d4989efd196b",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "finale",
+      "type": "film-scene",
+      "source": {
+        "path": "NOVO-CLIPE/images/END-CLIP.png",
+        "bytes": 10467636,
+        "sha256": "065a28c553250242eb0a2320411177f88c32aa31c7471ca0b62f1eb15ddb9c16",
+        "width": 6688,
+        "height": 3764,
+        "mode": "P"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/finale-wide.webp",
+          "bytes": 521870,
+          "sha256": "6ed0ea28eba5a106363939eb75544a64c74db86e2c8ad7ef65f64d4a7da48cd1",
+          "width": 1920,
+          "height": 1081,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 1920,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        },
+        {
+          "path": "site/public/assets/v2/finale-mobile.webp",
+          "bytes": 163686,
+          "sha256": "536abb16e8b47de88bb5e7ab5ad56b02cc472fc3b2862838b4725b4372f956d3",
+          "width": 900,
+          "height": 507,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "WebP quality 90",
+            "max_width": 900,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "front",
+      "type": "technical-master",
+      "source": {
+        "path": "referencias/Prova_Cedula_Guatemala_V3-final.jpg",
+        "bytes": 8107438,
+        "sha256": "42c2a586ab960af3afbdb728df534a29cdf63fc394cfa834ad3a6c0afe855f9a",
+        "width": 4720,
+        "height": 2215,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/front-master.jpg",
+          "bytes": 8107438,
+          "sha256": "42c2a586ab960af3afbdb728df534a29cdf63fc394cfa834ad3a6c0afe855f9a",
+          "operation": "byte-for-byte copy; SHA-256 verified",
+          "width": 4720,
+          "height": 2215,
+          "mode": "RGB"
+        },
+        {
+          "path": "site/public/assets/v2/front.webp",
+          "bytes": 2657990,
+          "sha256": "5c29bab02e374f7006846147f1a3e5d36a4be114658da9b977640cf142b94596",
+          "width": 1800,
+          "height": 845,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "lossless WebP",
+            "max_width": 1800,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "back",
+      "type": "technical-master",
+      "source": {
+        "path": "referencias/Prova_Cedula_Guatemala-verso-V3-final.jpg",
+        "bytes": 27007712,
+        "sha256": "658c2750f2100e95ca1dd3a8014f5e4123ee16cba51581f9d3fbe5e68bc49028",
+        "width": 7086,
+        "height": 3323,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/back-master.jpg",
+          "bytes": 27007712,
+          "sha256": "658c2750f2100e95ca1dd3a8014f5e4123ee16cba51581f9d3fbe5e68bc49028",
+          "operation": "byte-for-byte copy; SHA-256 verified",
+          "width": 7086,
+          "height": 3323,
+          "mode": "RGB"
+        },
+        {
+          "path": "site/public/assets/v2/back.webp",
+          "bytes": 2399886,
+          "sha256": "be7ab0ba82baaef5e8af6e8a9120b8ce679b11bc1dc52fedc734838a2a5f6d5b",
+          "width": 1800,
+          "height": 844,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "lossless WebP",
+            "max_width": 1800,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "uv",
+      "type": "technical-master",
+      "source": {
+        "path": "referencias/Prova_Cedula_Guatemala-verso-uv-com-vermelho.jpg",
+        "bytes": 26925041,
+        "sha256": "d5e3b4f4179ce275ec1273f7f12df9bc7eab43b11579856423ed554109c84bb0",
+        "width": 7086,
+        "height": 3323,
+        "mode": "RGB"
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/uv-master.jpg",
+          "bytes": 26925041,
+          "sha256": "d5e3b4f4179ce275ec1273f7f12df9bc7eab43b11579856423ed554109c84bb0",
+          "operation": "byte-for-byte copy; SHA-256 verified",
+          "width": 7086,
+          "height": 3323,
+          "mode": "RGB"
+        },
+        {
+          "path": "site/public/assets/v2/uv.webp",
+          "bytes": 2547780,
+          "sha256": "72d21c8ccd3cf407c4bd31a371d428eb68822faf34d1c6e675ad43b24e5823f5",
+          "width": 1800,
+          "height": 844,
+          "mode": "RGB",
+          "operation": {
+            "encoding": "lossless WebP",
+            "max_width": 1800,
+            "resize": "proportional Lanczos, downscale only",
+            "crop": false,
+            "reconstruction": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "film",
+      "type": "final-film",
+      "source": {
+        "path": "NOVO-CLIPE/cedula-final.mp4",
+        "bytes": 54848473,
+        "sha256": "e4b6591b0ca4df2db1eb8d5af5feaae2754966a75978b9436b3c7598a41601a0",
+        "movie_duration_seconds": 51.84,
+        "movie_duration_units": 4665600,
+        "movie_timescale": 90000,
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 51.791666666666664,
+        "duration_units": 1243000,
+        "timescale": 24000
+      },
+      "outputs": [
+        {
+          "path": "site/public/assets/v2/cedula-final.mp4",
+          "bytes": 54848473,
+          "sha256": "e4b6591b0ca4df2db1eb8d5af5feaae2754966a75978b9436b3c7598a41601a0",
+          "operation": "byte-for-byte copy; SHA-256 verified",
+          "movie_duration_seconds": 51.84,
+          "movie_duration_units": 4665600,
+          "movie_timescale": 90000,
+          "width": 1920,
+          "height": 1080,
+          "duration_seconds": 51.791666666666664,
+          "duration_units": 1243000,
+          "timescale": 24000
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "output_files": 23,
+    "output_bytes": 128415666,
+    "ai_generations": 0
+  }
+}

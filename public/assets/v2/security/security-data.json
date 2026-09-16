@@ -1,0 +1,239 @@
+[
+  {
+    "id": "fundo-seguranca",
+    "number": "01",
+    "name": "Fundo de segurança",
+    "description": "Linhas, microimagens e padrões geométricos compõem o fundo de segurança impresso em offset.",
+    "face": "back",
+    "mode": "normal",
+    "position": {
+      "x": 0.145,
+      "y": 0.26
+    },
+    "macro": "/assets/v2/security/folder-fundo-seguranca.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do quetzal, chamada 1",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 8",
+      "supportPage": 8
+    }
+  },
+  {
+    "id": "modulacao-linha",
+    "number": "02",
+    "name": "Modulação de largura de linha",
+    "description": "A variação da largura das linhas constrói a imagem da ceiba e seus detalhes.",
+    "face": "back",
+    "mode": "normal",
+    "position": {
+      "x": 0.468,
+      "y": 0.14
+    },
+    "macro": "/assets/v2/security/folder-modulacao-linha.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do quetzal, chamada 2",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 8",
+      "supportPage": 8
+    }
+  },
+  {
+    "id": "tinta-iridescente-uv",
+    "number": "03",
+    "name": "Tinta iridescente reativa à luz UV",
+    "description": "Os elementos geométricos da faixa lateral recebem tinta iridescente com reação à luz ultravioleta.",
+    "face": "back",
+    "mode": "normal",
+    "position": {
+      "x": 0.68,
+      "y": 0.61
+    },
+    "macro": "/assets/v2/security/folder-tinta-iridescente-uv.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do quetzal, chamada 3",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 10",
+      "supportPage": 10
+    }
+  },
+  {
+    "id": "micro-numero-laser",
+    "number": "04",
+    "name": "Micronumeração gravada a laser",
+    "description": "Uma numeração em pequena escala é gravada a laser entre as linhas da folha, no lado direito da cédula.",
+    "face": "back",
+    "mode": "normal",
+    "position": {
+      "x": 0.963,
+      "y": 0.454
+    },
+    "macro": "/assets/v2/security/folder-micro-numero-laser.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do quetzal, chamada 4",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 9",
+      "supportPage": 9
+    }
+  },
+  {
+    "id": "uv-multitonal",
+    "number": "05",
+    "name": "Impressão UV multitonal",
+    "description": "Sob luz ultravioleta, a impressão revela diferentes nuances de cor em registro com imagens visíveis, incluindo o quetzal.",
+    "face": "back",
+    "mode": "uv",
+    "position": null,
+    "macro": "/assets/v2/security/folder-uv-ceiba.png",
+    "additionalMacros": [
+      "/assets/v2/security/folder-uv-quetzal.png",
+      "/assets/v2/security/folder-uv-geometrias.png"
+    ],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel UV do quetzal, grupo de três detalhes",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 10",
+      "supportPage": 10
+    }
+  },
+  {
+    "id": "marca-agua",
+    "number": "06",
+    "name": "Marca d’água multitonal",
+    "description": "Múltiplos tons e gradações do claro ao escuro definem a marca d’água do jaguar.",
+    "face": "front",
+    "mode": "normal",
+    "position": {
+      "x": 0.185,
+      "y": 0.46
+    },
+    "macro": "/assets/v2/security/folder-marca-agua.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do templo, chamada superior esquerda",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 3",
+      "supportPage": 3
+    }
+  },
+  {
+    "id": "iris",
+    "number": "07",
+    "name": "Impressão em íris de máquina",
+    "description": "Uma transição contínua entre cores percorre o fundo de linhas, impressa com matriz única, sem retículas ou pontos.",
+    "face": "front",
+    "mode": "normal",
+    "position": {
+      "x": 0.647,
+      "y": 0.1
+    },
+    "macro": "/assets/v2/security/folder-iris.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do templo, chamada superior central",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 4",
+      "supportPage": 4
+    }
+  },
+  {
+    "id": "numero-laser",
+    "number": "08",
+    "name": "Numeração gravada a laser",
+    "description": "A numeração gravada a laser usa caracteres com alturas alternadas, como mostra o detalhe fornecido.",
+    "face": "front",
+    "mode": "normal",
+    "position": {
+      "x": 0.11,
+      "y": 0.72
+    },
+    "macro": "/assets/v2/security/folder-numero-laser.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do templo, chamada inferior 1",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 7",
+      "supportPage": 7
+    }
+  },
+  {
+    "id": "intaglio",
+    "number": "09",
+    "name": "Calcografia / Intaglio",
+    "description": "A impressão calcográfica combina riqueza de detalhes, complexidade gráfica e relevo perceptível ao toque na peça física.",
+    "face": "front",
+    "mode": "normal",
+    "position": {
+      "x": 0.47,
+      "y": 0.6
+    },
+    "macro": "/assets/v2/security/folder-intaglio.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do templo, chamada inferior 2",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 5",
+      "supportPage": 5
+    }
+  },
+  {
+    "id": "serigrafia-iridescente",
+    "number": "10",
+    "name": "Serigrafia iridescente reativa à luz UV",
+    "description": "A serigrafia iridescente do motivo circular reage à luz ultravioleta. A camada de tinta também produz relevo perceptível ao toque na peça física.",
+    "face": "front",
+    "mode": "normal",
+    "position": {
+      "x": 0.574,
+      "y": 0.37
+    },
+    "macro": "/assets/v2/security/folder-serigrafia-iridescente.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do templo, chamada inferior 3",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 6",
+      "supportPage": 6
+    }
+  },
+  {
+    "id": "numero-perfurado",
+    "number": "11",
+    "name": "Numeração perfurada a laser",
+    "description": "A numeração também aparece em microperfurações a laser, acima da palavra GUATEMALA.",
+    "face": "front",
+    "mode": "normal",
+    "position": {
+      "x": 0.746,
+      "y": 0.707
+    },
+    "macro": "/assets/v2/security/folder-numero-perfurado.png",
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, painel do templo, chamada inferior 4",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": "Book anterior · página 7",
+      "supportPage": 7
+    }
+  },
+  {
+    "id": "substrato",
+    "number": "12",
+    "name": "O papel também protege",
+    "description": "Desenvolvido por Blendpaper com fibras de algodão provenientes da reciclagem controlada de resíduos de papel moeda. A tecnologia UltraLife Fusion™ combina coesão interna das fibras e proteção externa, preservando o toque do papel de algodão.",
+    "face": null,
+    "mode": "material",
+    "position": null,
+    "macro": null,
+    "additionalMacros": [],
+    "source": {
+      "primary": "GUATEMALA 30X21-02.png, texto central sobre substrato",
+      "primaryShort": "Prancha técnica atual · GUATEMALA 30X21-02",
+      "support": null,
+      "supportPage": null
+    }
+  }
+]
