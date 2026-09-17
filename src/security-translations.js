@@ -1,6 +1,6 @@
 import { t } from './i18n.js';
 
-// The technical copy retains the supplied feature claims; provenance stays in the asset manifest.
+// The technical copy retains the supplied feature claims.
 const spanish = {
   'fundo-seguranca': ['Fondo de seguridad', 'Líneas, microimágenes y patrones geométricos componen el fondo de seguridad impreso en offset.'],
   'modulacao-linha': ['Modulación del ancho de línea', 'La variación del ancho de las líneas construye la imagen de la ceiba y sus detalles.'],

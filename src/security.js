@@ -26,8 +26,8 @@ function setCopy(root, selector, pt, es, attribute) {
 function initAtlas(root, sourceItems) {
   if (root.dataset.securityReady) return;
   root.dataset.securityReady = 'true';
-  // The source manifest follows its technical plate. The visitor starts at
-  // Tikal (the front), then crosses to Quetzal, and ends with the substrate.
+  // The visitor starts at Tikal (the front), then crosses to Quetzal,
+  // and ends with the substrate.
   const items = [
     ...sourceItems.filter(item => item.face === 'front'),
     ...sourceItems.filter(item => item.face === 'back'),
