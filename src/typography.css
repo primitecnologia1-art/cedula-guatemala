@@ -78,6 +78,8 @@
   --font-size-micro: 12px;
   --font-size-tiny: 8px;
   --font-size-hairline: 7px;
+  --font-size-footer-copy: var(--font-size-ui-small);
+  --font-size-footer-note: var(--font-size-caption);
 
   /* Cabeçalho e chamadas */
   --font-size-brand-symbol: 30px;
@@ -169,6 +171,8 @@
     --font-size-hero-film-kicker: 7px;
     --font-size-hero-film-title: 16px;
     --font-size-title-footer: 19vw;
+    --font-size-footer-copy: 12px;
+    --font-size-footer-note: 10px;
   }
 }
 
@@ -533,12 +537,12 @@ h3,
 }
 
 .footer-row {
-  font-size: var(--font-size-ui-small);
+  font-size: var(--font-size-footer-copy);
   line-height: 1.8;
 }
 
 .footer-row small {
-  font-size: var(--font-size-caption);
+  font-size: var(--font-size-footer-note);
 }
 
 .footer-row button,
@@ -565,18 +569,13 @@ h3,
   }
 
 
-  .footer-row,
   .footer-row button,
   .footer-row a {
     font-size: var(--font-size-caption);
   }
 
-  .footer-row small {
-    font-size: var(--font-size-micro);
-  }
-
   .footer-row p {
-    line-height: 1.9;
+    line-height: 1.65;
   }
 }
 
