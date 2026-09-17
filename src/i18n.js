@@ -7,7 +7,7 @@ export const t = (portuguese, spanish) => language === 'es' ? spanish : portugue
 
 // Translate text nodes in place: animation targets, icons, links and listeners stay intact.
 const copy = [
-  ['.skip-link', ['Ir a la exploración del billete']],
+  ['.skip-link', ['Ir al contenido']],
   ['.header-film > span', ['Ver la película']],
   ['#hero-title > span:nth-child(1)', ['¿Cómo guardar']],
   ['#hero-title > span:nth-child(2)', ['LA GRANDEZA']],
@@ -16,7 +16,7 @@ const copy = [
   ['.portal-copy > span:nth-child(1)', ['UNA HISTORIA']],
   ['.portal-copy > span:nth-child(2)', ['ATRAVIESA']],
   ['.portal-copy > span:nth-child(3)', ['MUNDOS.']],
-  ['.explore-link > span:last-child', ['Entra en esta historia', 'Explora al hacer scroll']],
+  ['.scroll-cue > span', ['Desliza para descubrir']],
   ['.hero-film small', ['UNA EXPERIENCIA DE CINE · 52 S']],
   ['.hero-film strong', ['Ver la película']],
   ['.origin-continuation .chapter-label', ['DE LAS RAÍCES A LA LUZ']],
@@ -33,9 +33,8 @@ const copy = [
   ['.jaguar-copy .chapter-label', ['02 — LA TRANSFORMACIÓN']],
   ['#matter-title', ['UNA MIRADA.', 'OTRA MATERIA.']],
   ['.jaguar-copy > p', ['Todo esto nos inspira a dar', 'a la historia una nueva forma.']],
-  ['.paper-copy .chapter-label', ['DE LA IDENTIDAD AL PAPEL']],
-  ['.paper-copy h2', ['IDENTIDAD', 'EN', 'SEGURIDAD.']],
-  ['.paper-link', ['Explora lo que protege esta historia']],
+  ['.paper-copy .chapter-label', ['DE LA HISTORIA AL PAPEL']],
+  ['.paper-copy h2', ['IDENTIDAD EN', 'SEGURIDAD.']],
   ['.security-section .section-heading .chapter-label', ['03 — LA PRECISIÓN']],
   ['#security-title', ['Cada detalle', 'tiene una razón.']],
   ['.security-section .section-heading > p', ['Acerca la mirada. Explora el papel, la impresión y los elementos de seguridad que dan forma a la identidad.']],
@@ -43,7 +42,6 @@ const copy = [
   ['.light-title-wrap .chapter-label', ['04 — LO INVISIBLE']],
   ['#light-title', ['NO TODO', 'ESTÁ A LA VISTA.']],
   ['.light-title-wrap > p', ['La misma superficie.', 'Otra capa de identidad.']],
-  ['.light-enter-link', ['Entra en la luz']],
   ['#uv-root > .module-loading', ['Preparando la inspección UV…']],
   ['.finale-copy .chapter-label', ['05 — LO QUE VIENE DESPUÉS']],
   ['#finale-title', ['PARA SEGUIR', 'ADELANTE.']],
@@ -76,6 +74,52 @@ function textNodes(element) {
     if (node.nodeValue.trim()) nodes.push(node);
   }
   return nodes;
+}
+
+const widowProtectedSelectors = [
+  '#hero-title > span',
+  '.hero-copy > p',
+  '.portal-copy > span',
+  '.origin-continuation h2',
+  '.journey-intro h2',
+  '.journey-intro > p',
+  '.story-copy h3',
+  '.story-copy p',
+  '.jaguar-copy h2',
+  '.jaguar-copy > p',
+  '.paper-copy h2',
+  '.section-heading h2',
+  '.section-heading > p',
+  '.sec-index-label',
+  '.sec-caption-hint',
+  '.sec-detail-title',
+  '.sec-detail-description',
+  '.light-title-wrap h2',
+  '.light-title-wrap > p',
+  '.uv-title',
+  '.uv-intro',
+  '.uv-instructions',
+  '.uv-guide-label',
+  '.uv-guide-description',
+  '.finale-copy h2',
+  '.finale-copy > p',
+  '.footer-row p',
+].join(',');
+
+/** Keep the final two words together without changing the visible copy. */
+export function applyWidowProtection(root = document) {
+  root.querySelectorAll(widowProtectedSelectors).forEach(element => {
+    const nodes = textNodes(element);
+    nodes.forEach(node => {
+      const value = node.nodeValue.replace(/\u00a0/g, ' ');
+      node.nodeValue = value.replace(/(\S+)\s+(\S+)(\s*)$/, '$1\u00a0$2$3');
+    });
+    // Long final pairs may not fit a narrow detail column. Let CSS balance
+    // those words instead of overflowing into the circular image.
+    if (element.clientWidth > 0 && element.scrollWidth > element.clientWidth + 1) {
+      nodes.forEach(node => { node.nodeValue = node.nodeValue.replace(/\u00a0/g, ' '); });
+    }
+  });
 }
 
 let initialized = false;

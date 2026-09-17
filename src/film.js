@@ -36,7 +36,7 @@ export function initFilm() {
         </div>
       </header>
       <div class="film-stage">
-        <video class="film-video" width="1920" height="1080" controls controlslist="nofullscreen" playsinline preload="none" poster="/assets/v2/finale-wide.webp" aria-label="Filme Guatemala" tabindex="0">
+        <video class="film-video" width="1920" height="1080" controls playsinline preload="none" poster="/assets/v2/finale-wide.webp" aria-label="Filme Guatemala" tabindex="0">
           <source src="${FILM_URL}" type="video/mp4">
           <span class="film-unsupported">Seu navegador não consegue reproduzir este filme.</span>
         </video>
@@ -74,7 +74,7 @@ export function initFilm() {
   }
 
   function updateTexts() {
-    const fullscreen = document.fullscreenElement === shell;
+    const fullscreen = document.fullscreenElement === video || video.webkitDisplayingFullscreen;
     dialog.querySelector('.film-title span').textContent = t('/ O filme', '/ La película');
     closeButton.querySelector('span').textContent = t('Fechar', 'Cerrar');
     closeButton.setAttribute('aria-label', t('Fechar filme e voltar à experiência', 'Cerrar la película y volver a la experiencia'));
@@ -224,13 +224,15 @@ export function initFilm() {
 
   // showModal supplies the focus trap, including the browser's own media controls.
   // Escape uses the dialog's native cancel/close behavior.
-  if (!shell.requestFullscreen && !video.webkitEnterFullscreen) fullscreenButton.hidden = true;
+  if (!video.requestFullscreen && !video.webkitEnterFullscreen) fullscreenButton.hidden = true;
   fullscreenButton.addEventListener('click', () => {
     try {
-      if (document.fullscreenElement === shell) {
+      if (document.fullscreenElement === video) {
         document.exitFullscreen().catch(() => setStatus('fullscreenRetry'));
-      } else if (shell.requestFullscreen) {
-        shell.requestFullscreen().catch(() => setStatus('fullscreenRetry'));
+      } else if (video.webkitDisplayingFullscreen) {
+        video.webkitExitFullscreen?.();
+      } else if (video.requestFullscreen) {
+        video.requestFullscreen().catch(() => setStatus('fullscreenRetry'));
       } else {
         video.webkitEnterFullscreen();
       }

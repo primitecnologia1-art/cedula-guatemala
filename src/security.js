@@ -1,6 +1,7 @@
 import './security.css';
-import { t } from './i18n.js';
+import { applyWidowProtection, t } from './i18n.js';
 import { itemCopy, guidedLights } from './security-translations.js';
+import { createSecurityViewer } from './security-viewer.js';
 
 const ASSETS = '/assets/v2/';
 const FACES = {
@@ -22,15 +23,22 @@ function setCopy(root, selector, pt, es, attribute) {
   else element.textContent = t(pt, es);
 }
 
-function initAtlas(root, items) {
+function initAtlas(root, sourceItems) {
   if (root.dataset.securityReady) return;
   root.dataset.securityReady = 'true';
+  // The source manifest follows its technical plate. The visitor starts at
+  // Tikal (the front), then crosses to Quetzal, and ends with the substrate.
+  const items = [
+    ...sourceItems.filter(item => item.face === 'front'),
+    ...sourceItems.filter(item => item.face === 'back'),
+    ...sourceItems.filter(item => !item.face),
+  ].map((item, index) => ({ ...item, number: String(index + 1).padStart(2, '0') }));
   root.innerHTML = `
     <div class="sec-atlas">
       <div class="sec-toolbar">
         <div class="sec-face-switch" role="group">
-          <button type="button" data-sec-face="front" aria-pressed="true">Tikal <span>01</span></button>
-          <button type="button" data-sec-face="back" aria-pressed="false">Quetzal <span>02</span></button>
+          <button type="button" data-sec-face="front" aria-pressed="true">Tikal</button>
+          <button type="button" data-sec-face="back" aria-pressed="false">Quetzal</button>
         </div>
         <span class="sec-toolbar-hint"></span>
       </div>
@@ -44,7 +52,7 @@ function initAtlas(root, items) {
           <div class="sec-caption"><span class="sec-face-caption"></span><span class="sec-caption-hint"></span></div>
           <div class="sec-selected" aria-live="polite" aria-atomic="true">
             <div class="sec-selected-copy"><p class="sec-detail-index"></p><h3 class="sec-detail-title"></h3><p class="sec-detail-description"></p></div>
-            <figure class="sec-macro"><img width="520" height="520" loading="lazy" decoding="async"><figcaption></figcaption></figure>
+            <figure class="sec-macro"><button class="sec-macro-open" type="button" aria-haspopup="dialog"><img width="520" height="520" loading="lazy" decoding="async"><span class="sec-macro-expand" aria-hidden="true">＋</span></button><figcaption></figcaption></figure>
             <div class="sec-material-mark" hidden><span>UltraLife</span><strong>Fusion<sup>™</sup></strong><small></small></div>
           </div>
         </div>
@@ -56,13 +64,16 @@ function initAtlas(root, items) {
   const hotspots = root.querySelector('.sec-hotspots');
   const list = root.querySelector('.sec-item-list');
   const detailImage = root.querySelector('.sec-macro img');
+  const macroButton = root.querySelector('.sec-macro-open');
+  const viewer = createSecurityViewer();
   const noteStage = root.querySelector('.sec-note-stage');
   let face = 'front';
   let selected = items.find(item => item.id === 'marca-agua') || items[0];
 
   note.addEventListener('load', () => { noteStage.dataset.loading = 'false'; });
   note.addEventListener('error', () => { noteStage.dataset.loading = 'error'; updateText(); });
-  detailImage.addEventListener('error', () => { detailImage.hidden = true; updateText(); });
+  detailImage.addEventListener('error', () => { detailImage.hidden = true; macroButton.disabled = true; updateText(); });
+  macroButton.addEventListener('click', () => viewer.open(selected, macroButton));
 
   const buttons = items.map(item => {
     const button = make('button', 'sec-item');
@@ -87,7 +98,8 @@ function initAtlas(root, items) {
     setCopy(root, '.sec-index-label', '12 formas de olhar mais perto', '12 formas de mirar más de cerca');
     setCopy(root, '.sec-material-mark small', 'Tecnologia do substrato', 'Tecnología del sustrato');
     setCopy(root, '.sec-note-loader', noteStage.dataset.loading === 'error' ? 'Imagem indisponível. Tente novamente em instantes.' : 'Carregando a imagem original…', noteStage.dataset.loading === 'error' ? 'Imagen no disponible. Inténtalo de nuevo en unos instantes.' : 'Cargando la imagen original…');
-    setCopy(root, '.sec-macro figcaption', detailImage.hidden ? 'Detalhe indisponível.' : 'Detalhe ampliado', detailImage.hidden ? 'Detalle no disponible.' : 'Detalle ampliado');
+    setCopy(root, '.sec-macro figcaption', detailImage.hidden ? 'Detalhe indisponível.' : 'Ampliar detalhe', detailImage.hidden ? 'Detalle no disponible.' : 'Ampliar detalle');
+    macroButton.setAttribute('aria-label', `${t('Ampliar', 'Ampliar')}: ${copy.name}`);
     note.alt = selected.mode === 'uv' ? t('UV original do lado quetzal da cédula.', 'UV original de la cara del quetzal del billete.') : t(...currentFace.alt);
     root.querySelector('.sec-face-caption').textContent = `${currentFace.name} · ${selected.mode === 'uv' ? t('Impressão UV', 'Impresión UV') : t('A cédula', 'El billete')}`;
     root.querySelector('.sec-detail-index').textContent = `${selected.number} / ${selected.mode === 'material' ? t('O material', 'El material') : t('O detalhe', 'El detalle')}`;
@@ -99,6 +111,7 @@ function initAtlas(root, items) {
       const item = items.find(entry => entry.id === dot.dataset.secHotspot);
       dot.setAttribute('aria-label', `${item.number}. ${itemCopy(item).name}`);
     });
+    applyWidowProtection(root);
   }
 
   function renderFace() {
@@ -134,7 +147,7 @@ function initAtlas(root, items) {
     const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
     if (stageBounds.top < headerHeight || stageBounds.bottom > window.innerHeight) {
       const top = window.scrollY + target.getBoundingClientRect().top - headerHeight - (mobile ? 12 : 16);
-      window.scrollTo({ top, behavior: (document.documentElement.classList.contains('reduced-motion') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' });
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   }
 
@@ -149,6 +162,7 @@ function initAtlas(root, items) {
     root.querySelector('.sec-material-mark').hidden = Boolean(item.macro);
     if (item.macro) {
       detailImage.hidden = false;
+      macroButton.disabled = false;
       detailImage.src = item.macro;
     }
     renderFace();
@@ -176,8 +190,8 @@ function initUV(root) {
         <div class="uv-exhibit">
           <div class="uv-window">
             <div class="uv-stage" tabindex="0" role="group" aria-describedby="uv-instructions" style="--uv-x: 51%; --uv-y: 34%; --uv-origin-x: 51%; --uv-origin-y: 34%">
-              <img class="uv-normal-image" src="${ASSETS}back.webp" width="7086" height="3323" loading="lazy" decoding="async">
-              <img class="uv-reveal-image" src="${ASSETS}uv.webp" width="7086" height="3323" loading="lazy" decoding="async">
+              <img class="uv-normal-image" src="${ASSETS}back.webp" width="7086" height="3323" loading="lazy" decoding="async" draggable="false">
+              <img class="uv-reveal-image" src="${ASSETS}uv.webp" width="7086" height="3323" loading="lazy" decoding="async" draggable="false">
               <span class="uv-lens" aria-hidden="true"><span></span></span>
             </div>
             <span class="uv-mode-label" aria-hidden="true"></span>
@@ -202,6 +216,8 @@ function initUV(root) {
   let animationFrame = 0;
   let isZoomed = false;
   let guidedIndex = 1;
+  let activePointer = null;
+  const touchQuery = window.matchMedia('(pointer: coarse)');
 
   function updateText() {
     setCopy(root, '.uv-title', 'Conduza a luz.', 'Guía la luz.');
@@ -209,7 +225,11 @@ function initUV(root) {
     setCopy(root, '.uv-stage', 'Explore a impressão UV com uma luz móvel', 'Explora la impresión UV con una luz móvil', 'aria-label');
     setCopy(root, '.uv-normal-image', 'Cédula original: lado do quetzal em luz normal.', 'Billete original: cara del quetzal bajo luz normal.', 'alt');
     setCopy(root, '.uv-reveal-image', 'Impressão UV original revelada pela luz móvel.', 'Impresión UV original revelada por la luz móvil.', 'alt');
-    setCopy(root, '.uv-instructions', 'Mova a luz ou toque na cédula. Com a imagem em foco, use as setas do teclado.', 'Mueve la luz o toca el billete. Con la imagen enfocada, usa las flechas del teclado.');
+    if (touchQuery.matches) {
+      setCopy(root, '.uv-instructions', 'Arraste o dedo sobre a cédula para conduzir a luz. Para continuar a página, arraste fora da imagem.', 'Arrastra el dedo sobre el billete para guiar la luz. Para seguir por la página, desliza fuera de la imagen.');
+    } else {
+      setCopy(root, '.uv-instructions', 'Mova a luz ou toque na cédula. Com a imagem em foco, use as setas do teclado.', 'Mueve la luz o toca el billete. Con la imagen enfocada, usa las flechas del teclado.');
+    }
     setCopy(root, '.uv-modes', 'Modo de exploração UV', 'Modo de exploración UV', 'aria-label');
     setCopy(root, '[data-uv-mode="light"] .uv-mode-copy', 'Explorar com luz', 'Explorar con luz');
     setCopy(root, '[data-uv-mode="full"] .uv-mode-copy', 'Revelar toda a UV', 'Revelar toda la UV');
@@ -225,6 +245,7 @@ function initUV(root) {
     root.querySelector('.uv-guide-description').textContent = t(...point.text);
     root.querySelector('.uv-original-macro img').alt = `${t(...point.name)}: ${t('detalhe UV original ampliado.', 'detalle UV original ampliado.')}`;
     root.querySelectorAll('[data-uv-point]').forEach((button, index) => { button.lastElementChild.textContent = t(...guidedLights[index].name); });
+    applyWidowProtection(root);
   }
 
   function anchorCamera(x, y) {
@@ -255,6 +276,7 @@ function initUV(root) {
   }
 
   function setMode(nextMode) {
+    releasePointer();
     mode = nextMode;
     if (mode === 'full' && isZoomed) { isZoomed = false; updateZoom(); }
     stage.classList.toggle('uv-stage-full', mode === 'full');
@@ -285,11 +307,28 @@ function initUV(root) {
 
   const onPointer = event => {
     if (mode !== 'light' || !event.isPrimary) return;
+    if (event.pointerType !== 'mouse' && activePointer !== event.pointerId) return;
+    if (event.pointerType !== 'mouse' && event.cancelable) event.preventDefault();
     const rect = stage.getBoundingClientRect();
     moveLight(((event.clientX - rect.left) / rect.width) * 100, ((event.clientY - rect.top) / rect.height) * 100);
   };
-  stage.addEventListener('pointermove', onPointer, { passive: true });
-  stage.addEventListener('pointerdown', onPointer, { passive: true });
+  function releasePointer() {
+    if (activePointer !== null && stage.hasPointerCapture(activePointer)) stage.releasePointerCapture(activePointer);
+    activePointer = null;
+    stage.classList.remove('uv-stage-dragging');
+  }
+  stage.addEventListener('pointermove', onPointer, { passive: false });
+  stage.addEventListener('pointerdown', event => {
+    if (mode !== 'light' || !event.isPrimary || event.button !== 0) return;
+    activePointer = event.pointerId;
+    stage.setPointerCapture(event.pointerId);
+    stage.classList.add('uv-stage-dragging');
+    onPointer(event);
+  }, { passive: false });
+  stage.addEventListener('pointerup', releasePointer);
+  stage.addEventListener('pointercancel', releasePointer);
+  stage.addEventListener('lostpointercapture', releasePointer);
+  stage.addEventListener('dragstart', event => event.preventDefault());
   stage.addEventListener('keydown', event => {
     const movements = { ArrowLeft: [-4, 0], ArrowRight: [4, 0], ArrowUp: [0, -7], ArrowDown: [0, 7] };
     if (!movements[event.key]) return;
@@ -308,6 +347,7 @@ function initUV(root) {
   ultravioletImage.addEventListener('load', updateZoom);
   new ResizeObserver(updateZoom).observe(stage);
   document.addEventListener('language:change', updateText);
+  touchQuery.addEventListener('change', updateText);
   guide(1);
   updateZoom();
 }

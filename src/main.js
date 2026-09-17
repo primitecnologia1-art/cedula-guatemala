@@ -1,9 +1,10 @@
+import './typography.css';
 import './style.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initFilm } from './film.js';
 import { initSecurity } from './security.js';
-import { initLanguage, t } from './i18n.js';
+import { applyWidowProtection, initLanguage } from './i18n.js';
 
 gsap.registerPlugin(ScrollTrigger);
 // This module owns resize refreshes, including the temporary viewport changes of native cinema.
@@ -11,27 +12,16 @@ ScrollTrigger.config({ ignoreMobileResize: true, autoRefreshEvents: 'visibilityc
 initLanguage();
 initFilm();
 const securityReady = initSecurity();
-const reducedQuery = matchMedia('(prefers-reduced-motion: reduce)');
 const desktopQuery = matchMedia('(min-width: 1000px) and (min-height: 650px) and (pointer: fine)');
 const mobilePinQuery = matchMedia('(max-width: 999px) and (min-height: 650px)');
-const motionButton = document.querySelector('#motion-toggle');
-let userMotion;
-try { userMotion = localStorage.getItem('guatemala-motion'); } catch { /* Preferences remain usable without storage. */ }
 let motionContext;
 let desktop = false;
 let mobilePinned = false;
-let reduced = reducedQuery.matches || userMotion === 'reduced';
-let filmOpen = false;
-let filmResized = false;
+let viewerOpen = false;
+let viewerResized = false;
 let rebuildTimer;
 let lastWidth = innerWidth;
 let lastHeight = innerHeight;
-
-function updateMotionButton() {
-  motionButton.setAttribute('aria-pressed', String(reduced));
-  motionButton.textContent = reduced ? t('Ativar movimento', 'Activar movimiento') : t('Reduzir movimento', 'Reducir movimiento');
-  document.documentElement.classList.toggle('reduced-motion', reduced);
-}
 
 function buildMotion(preservePosition = false) {
   const readingSections = [...document.querySelectorAll('main > section, .site-footer')];
@@ -42,18 +32,12 @@ function buildMotion(preservePosition = false) {
   const anchorProgress = anchor ? (scrollY - (anchor.getBoundingClientRect().top + scrollY)) / anchor.offsetHeight : 0;
   motionContext?.revert();
   document.body.classList.remove('motion-desktop', 'motion-mobile');
-  desktop = desktopQuery.matches && !reduced;
-  mobilePinned = mobilePinQuery.matches && !reduced;
-  updateMotionButton();
-  if (reduced) {
-    document.querySelector('.paper-scene').inert = false;
-    ScrollTrigger.refresh();
-    if (anchor) window.scrollTo({ top: anchor.getBoundingClientRect().top + scrollY + anchorProgress * anchor.offsetHeight, behavior: 'instant' });
-    updateReadingState();
-    return;
-  }
+  // The scroll narrative is always active, including touch devices and past saved preferences.
+  desktop = desktopQuery.matches;
+  mobilePinned = mobilePinQuery.matches;
   if (desktop) document.body.classList.add('motion-desktop');
   if (mobilePinned) document.body.classList.add('motion-mobile');
+  applyWidowProtection();
   motionContext = gsap.context(() => {
     if (desktop) {
       // Pins are created in document order so each downstream scene accounts for prior spacing.
@@ -81,8 +65,7 @@ function buildMotion(preservePosition = false) {
         .fromTo(paper, { clipPath: 'circle(0% at 36% 52%)' }, { clipPath: 'circle(110% at 36% 52%)', ease: 'power1.inOut', duration: .65 }, .25)
         .fromTo('.matter-banknote', { scale: 1.5, y: 75, transformOrigin: '23% 51%' }, { scale: 1, y: 0, ease: 'power1.out', duration: .7 }, .3)
         .fromTo('.paper-atmosphere img', { scale: 1.15 }, { scale: 1, ease: 'none', duration: .8 }, .3)
-        .fromTo('.paper-copy', { y: 35, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .3 }, .75)
-        .fromTo('.paper-link', { autoAlpha: 0 }, { autoAlpha: 1, duration: .2 }, 1);
+        .fromTo('.paper-copy', { y: 35, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .3 }, .75);
 
       gsap.fromTo('.light-title-wrap', { y: 85 }, { y: -45, ease: 'none', scrollTrigger: { trigger: '.light-entry', start: 'top bottom', end: 'bottom top', scrub: .8 } });
       gsap.fromTo('.light-environment', { scale: 1.2, opacity: .2 }, { scale: 1, opacity: .52, ease: 'none', scrollTrigger: { trigger: '.light-entry', start: 'top bottom', end: 'bottom 35%', scrub: .8 } });
@@ -107,8 +90,7 @@ function buildMotion(preservePosition = false) {
           .to('.jaguar-copy', { y: -40, opacity: 0, duration: .24 }, .05)
           .fromTo(paper, { clipPath: 'circle(0% at 50% 55%)' }, { clipPath: 'circle(125% at 50% 55%)', duration: .65, ease: 'power1.inOut' }, .22)
           .fromTo('.matter-banknote', { scale: 1.23, y: 35 }, { scale: 1, y: 0, duration: .7, ease: 'power2.out' }, .25)
-          .fromTo('.paper-copy', { y: 35, opacity: 0 }, { y: 0, opacity: 1, duration: .35 }, .55)
-          .fromTo('.paper-link', { opacity: 0 }, { opacity: 1, duration: .2 }, .85);
+          .fromTo('.paper-copy', { y: 35, opacity: 0 }, { y: 0, opacity: 1, duration: .35 }, .55);
       } else {
         gsap.fromTo('.jaguar-scene img', { scale: 1.08 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.jaguar-scene', start: 'top bottom', end: 'bottom top', scrub: .5 } });
         gsap.fromTo('.matter-banknote', { y: 45, scale: .92 }, { y: 0, scale: 1, scrollTrigger: { trigger: '.paper-scene', start: 'top 80%', end: 'top 5%', scrub: .5 } });
@@ -133,7 +115,7 @@ const paperRegions = ['.journey-intro', '.security-section'].map(s => document.q
 let readingFrame;
 function updateReadingState() {
   readingFrame = null;
-  if (filmOpen) return;
+  if (viewerOpen) return;
   const distance = document.documentElement.scrollHeight - innerHeight;
   progress.style.transform = `scaleX(${distance > 0 ? Math.min(1, scrollY / distance) : 0})`;
   const paperHere = paperRegions.some(element => {
@@ -144,21 +126,23 @@ function updateReadingState() {
   header.classList.toggle('is-scrolled', scrollY > 40);
 }
 addEventListener('scroll', () => { if (!readingFrame) readingFrame = requestAnimationFrame(updateReadingState); }, { passive: true });
-document.addEventListener('film:open', () => { filmOpen = true; filmResized = false; clearTimeout(rebuildTimer); });
-document.addEventListener('film:close', () => {
-  filmOpen = false;
+function onViewerOpen() { viewerOpen = true; viewerResized = false; clearTimeout(rebuildTimer); }
+function onViewerClose() {
+  viewerOpen = false;
   requestAnimationFrame(() => {
-    if (innerWidth !== lastWidth || Math.abs(innerHeight - lastHeight) > 140 || (desktopQuery.matches && !reduced) !== desktop) {
+    if (innerWidth !== lastWidth || Math.abs(innerHeight - lastHeight) > 140 || desktopQuery.matches !== desktop) {
       lastWidth = innerWidth; lastHeight = innerHeight;
       buildMotion(true);
-    } else if (filmResized) {
+    } else if (viewerResized) {
       const restoredY = scrollY;
       buildMotion();
       window.scrollTo({ top: restoredY, behavior: 'instant' });
     } else { ScrollTrigger.update(); updateReadingState(); }
-    filmResized = false;
+    viewerResized = false;
   });
-});
+}
+['film:open', 'security:open'].forEach(event => document.addEventListener(event, onViewerOpen));
+['film:close', 'security:close'].forEach(event => document.addEventListener(event, onViewerClose));
 
 document.addEventListener('click', event => {
   const anchor = event.target.closest('a[href^="#"]');
@@ -170,21 +154,19 @@ document.addEventListener('click', event => {
   if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
   target.focus({ preventScroll: true });
   const top = target.getBoundingClientRect().top + scrollY - header.offsetHeight;
-  window.scrollTo({ top: Math.max(0, top), behavior: reduced ? 'instant' : 'smooth' });
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   history.replaceState(null, '', anchor.hash);
 });
 
-motionButton.addEventListener('click', () => {
-  reduced = !reduced;
-  userMotion = reduced ? 'reduced' : 'full';
-  try { localStorage.setItem('guatemala-motion', userMotion); } catch { /* Session-only preference. */ }
-  buildMotion(true);
+document.addEventListener('language:change', () => {
+  requestAnimationFrame(() => {
+    applyWidowProtection();
+    buildMotion(true);
+  });
 });
-reducedQuery.addEventListener('change', () => { reduced = reducedQuery.matches || userMotion === 'reduced'; buildMotion(true); });
-document.addEventListener('language:change', () => { buildMotion(true); });
 addEventListener('resize', () => {
-  if (filmOpen) { filmResized = true; return; }
-  const changed = innerWidth !== lastWidth || Math.abs(innerHeight - lastHeight) > 140 || (desktopQuery.matches && !reduced) !== desktop || (mobilePinQuery.matches && !reduced) !== mobilePinned;
+  if (viewerOpen) { viewerResized = true; return; }
+  const changed = innerWidth !== lastWidth || Math.abs(innerHeight - lastHeight) > 140 || desktopQuery.matches !== desktop || mobilePinQuery.matches !== mobilePinned;
   if (!changed) return;
   clearTimeout(rebuildTimer);
   rebuildTimer = setTimeout(() => {
@@ -194,6 +176,7 @@ addEventListener('resize', () => {
 }, { passive: true });
 
 await Promise.allSettled([document.fonts.ready, securityReady]);
+applyWidowProtection();
 buildMotion();
 function settleInitialLocation() {
   ScrollTrigger.refresh();

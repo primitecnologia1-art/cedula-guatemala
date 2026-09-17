@@ -1,0 +1,862 @@
+@import '@fontsource/anton/latin-400.css';
+@import '@fontsource/manrope/latin-400.css';
+@import '@fontsource/manrope/latin-500.css';
+@import '@fontsource/manrope/latin-600.css';
+@import '@fontsource/manrope/latin-700.css';
+
+/* ==========================================================================
+   CENTRAL DE TIPOGRAFIA
+
+   Para ajustar o site, edite primeiro apenas as variáveis abaixo.
+   Elementos que têm a mesma função compartilham a mesma variável.
+   As associações entre variáveis e elementos ficam depois dos responsivos.
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --font-family-display: Anton, Impact, sans-serif;
+  --font-family-body: Manrope, sans-serif;
+
+  /* Títulos cinematográficos — desktop */
+  --font-size-title-opening: clamp(82px, 9.25vw, 162px);
+  --line-height-title-opening: 1.08;
+  --letter-spacing-title-opening: -.018em;
+
+  --font-size-title-portal: clamp(70px, 9vw, 155px);
+  --line-height-title-portal: 1.02;
+
+  --font-size-title-section: clamp(64px, 8vw, 130px);
+  --font-size-title-security: clamp(52px, 4.6vw, 76px);
+  --line-height-title-section: 1.05;
+
+  --font-size-title-story: clamp(60px, 7vw, 120px);
+  --line-height-title-story: 1;
+
+  /* Transformação: mesma presença, com ajuste de largura para cada composição. */
+  --font-size-title-transformation: clamp(64px, 8vw, 135px);
+  --font-size-title-jaguar: var(--font-size-title-transformation);
+  --font-size-title-paper: clamp(56px, 6.4vw, 106px);
+  --line-height-title-jaguar: 1;
+  --line-height-title-paper: 1.05;
+
+  /* Luz e encerramento compartilham a escala no desktop. */
+  --font-size-title-cinematic: clamp(70px, 9vw, 150px);
+  --font-size-title-light: var(--font-size-title-cinematic);
+  --font-size-title-finale: var(--font-size-title-cinematic);
+  --line-height-title-light: 1.08;
+  --line-height-title-finale: 1;
+
+  --font-size-title-footer: 19.7vw;
+  --line-height-title-footer: 1.22;
+
+  /* Textos de apoio — desktop */
+  --font-size-copy-reading: clamp(18px, 1.45vw, 22px);
+  --font-size-label-reading: clamp(16px, 1.3vw, 20px);
+  --font-size-copy-hero: var(--font-size-copy-reading);
+  --line-height-copy-hero: 1.75;
+  --font-size-copy-section: var(--font-size-copy-reading);
+  --line-height-copy-section: 1.85;
+  --font-size-copy-story: var(--font-size-copy-reading);
+  --line-height-copy-story: 1.75;
+  --font-size-copy-feature: var(--font-size-copy-reading);
+  --line-height-copy-feature: 1.8;
+  --font-size-copy-light: var(--font-size-copy-reading);
+  --line-height-copy-light: 1.75;
+  --font-size-copy-finale: var(--font-size-copy-reading);
+  --line-height-copy-finale: 1.75;
+
+  /* Labels, chamadas e interface — desktop */
+  --font-size-opening-kicker: var(--font-size-label-reading);
+  --line-height-opening-kicker: 1.5;
+  --letter-spacing-opening-kicker: .14em;
+  --font-size-chapter-label: var(--font-size-label-reading);
+  --line-height-chapter-label: 1.5;
+  --letter-spacing-chapter-label: .14em;
+  --font-size-ui: 16px;
+  --font-size-ui-small: 14px;
+  --font-size-caption: 13px;
+  --font-size-micro: 12px;
+  --font-size-tiny: 8px;
+  --font-size-hairline: 7px;
+
+  /* Cabeçalho e chamadas */
+  --font-size-brand-symbol: 30px;
+  --font-size-brand-slash: 29px;
+  --font-size-brand-name: 11px;
+  --font-size-header-nav: 12px;
+  --font-size-header-film: 12px;
+  --font-size-hero-film-kicker: 11px;
+  --font-size-hero-film-title: 20px;
+  --font-size-finale-film-title: 22px;
+  --font-size-finale-film-caption: 14px;
+
+  /* Exploração da cédula */
+  --font-size-security-face: 22px;
+  --font-size-security-face-index: 10px;
+  --font-size-security-hint: 14px;
+  --font-size-security-hotspot: 11px;
+  --font-size-security-caption: 12px;
+  --font-size-security-detail-label: 12px;
+  --font-size-security-detail-title: clamp(32px, 2.8vw, 46px);
+  --line-height-security-detail-title: 1.13;
+  --font-size-security-detail-copy: clamp(16px, 1.25vw, 18px);
+  --line-height-security-detail-copy: 1.75;
+  --font-size-security-list-label: 12px;
+  --font-size-security-list-number: 11px;
+  --font-size-security-list-item: 15px;
+  --line-height-security-list-item: 1.4;
+  --font-size-security-macro-caption: 12px;
+
+  /* Exploração UV */
+  --font-size-uv-eyebrow: 10px;
+  --font-size-uv-title: clamp(45px, 4.8vw, 78px);
+  --line-height-uv-title: 1.12;
+  --font-size-uv-intro: var(--font-size-copy-reading);
+  --line-height-uv-intro: 1.7;
+  --font-size-uv-instructions: 14px;
+  --font-size-uv-control: 14px;
+  --font-size-uv-guide-title: 20px;
+  --font-size-uv-guide-detail-title: 20px;
+  --font-size-uv-guide-copy: 16px;
+
+  /* Player do filme */
+  --font-size-film-title: 12px;
+  --font-size-film-button: 11px;
+  --font-size-film-caption: 10px;
+}
+
+/* Telas muito largas */
+@media (min-width: 1600px) {
+  :root {
+    --font-size-hero-film-title: 20px;
+  }
+}
+
+/* Tablet e layouts intermediários */
+@media (max-width: 999px) {
+  :root {
+    /* Mantém a escala de toque; os ajustes de desktop ficam no :root acima. */
+    --font-size-copy-hero: 14px;
+    --font-size-copy-story: 16px;
+    --font-size-copy-feature: 15px;
+    --font-size-copy-light: 15px;
+    --font-size-copy-finale: 16px;
+    --font-size-opening-kicker: 12px;
+    --font-size-chapter-label: 11px;
+    --font-size-ui: 12px;
+    --font-size-ui-small: 11px;
+    --font-size-caption: 10px;
+    --font-size-micro: 9px;
+    --font-size-finale-film-title: 18px;
+    --font-size-finale-film-caption: 11px;
+    --font-size-security-face: 20px;
+    --font-size-security-hint: 11px;
+    --font-size-security-hotspot: 9px;
+    --font-size-security-caption: 9px;
+    --font-size-security-detail-label: 9px;
+    --font-size-security-detail-copy: 14px;
+    --font-size-security-list-label: 9px;
+    --font-size-security-list-number: 9px;
+    --font-size-security-macro-caption: 8px;
+    --font-size-uv-intro: clamp(13px, 1.1vw, 16px);
+    --font-size-uv-instructions: 10px;
+    --font-size-uv-control: 11px;
+    --font-size-uv-guide-title: 16px;
+    --font-size-uv-guide-detail-title: 14px;
+    --font-size-uv-guide-copy: 12px;
+    --font-size-header-nav: 11px;
+    --font-size-copy-section: 13px;
+    --font-size-hero-film-kicker: 7px;
+    --font-size-hero-film-title: 16px;
+    --font-size-title-footer: 19vw;
+  }
+}
+
+/* Componentes da cédula em telas intermediárias */
+@media (max-width: 1000px) {
+  :root {
+    --font-size-security-detail-title: 27px;
+    --font-size-security-list-item: 12px;
+  }
+}
+
+/* Exploração da cédula e UV no mobile */
+@media (max-width: 760px) {
+  :root {
+    --font-size-tiny: 10px;
+    --font-size-hairline: 9px;
+    --font-size-uv-eyebrow: 12px;
+    --font-size-uv-title: clamp(49px, 12vw, 80px);
+    --line-height-uv-title: .99;
+    --font-size-uv-intro: 16px;
+    --line-height-uv-intro: 1.75;
+    --font-size-security-face: 16px;
+    --font-size-security-face-index: 10px;
+    --font-size-security-hint: 11px;
+    --font-size-security-hotspot: 9px;
+    --font-size-security-caption: 10px;
+    --font-size-security-detail-title: clamp(28px, 7.2vw, 40px);
+    --line-height-security-detail-title: 1.14;
+    --font-size-security-detail-copy: 16px;
+    --font-size-security-list-label: 11px;
+    --font-size-security-list-number: 10px;
+    --font-size-security-list-item: 12px;
+    --line-height-security-list-item: 1.55;
+    --font-size-security-macro-caption: 10px;
+    --font-size-uv-instructions: 13px;
+    --font-size-uv-control: 14px;
+    --font-size-uv-guide-title: 14px;
+    --font-size-uv-guide-detail-title: 18px;
+    --font-size-uv-guide-copy: 16px;
+  }
+}
+
+/* Mobile principal */
+@media (max-width: 639px) {
+  :root {
+    --font-size-title-opening: 65px;
+    --line-height-title-opening: 1.1;
+    --font-size-title-section: 50px;
+    --line-height-title-section: 1.06;
+    --font-size-title-story: 64px;
+    --line-height-title-story: 1.04;
+    --font-size-title-jaguar: 56px;
+    --font-size-title-paper: 64px;
+    --line-height-title-jaguar: 1.05;
+    --line-height-title-paper: 1.08;
+    --font-size-title-light: 58px;
+    --font-size-title-finale: 62px;
+    --line-height-title-light: 1.12;
+    --font-size-title-footer: 19vw;
+
+    --font-size-copy-hero: 18px;
+    --font-size-copy-section: 16px;
+    --line-height-copy-section: 1.8;
+    --font-size-copy-story: 18px;
+    --line-height-copy-story: 1.8;
+    --font-size-copy-feature: 16px;
+    --font-size-copy-light: 16px;
+    --font-size-copy-finale: 16px;
+
+    --font-size-opening-kicker: 16px;
+    --font-size-chapter-label: 14px;
+    --font-size-ui: 14px;
+    --font-size-ui-small: 13px;
+    --font-size-caption: 16px;
+    --font-size-micro: 16px;
+    --font-size-brand-symbol: 26px;
+    --font-size-brand-slash: 25px;
+    --font-size-header-film: 11px;
+    --font-size-hero-film-kicker: 8px;
+    --font-size-hero-film-title: 17px;
+    --font-size-finale-film-title: 15px;
+    --font-size-finale-film-caption: 11px;
+
+    --font-size-film-title: 12px;
+    --font-size-film-button: 12px;
+    --font-size-film-caption: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --font-size-brand-symbol: 23px;
+    --font-size-header-film: 9px;
+  }
+}
+
+/* Desktop baixo: mantém espaço para título, copy e filme na abertura. */
+@media (min-width: 1000px) and (max-height: 760px) {
+  :root {
+    --font-size-title-opening: clamp(76px, 13vh, 108px);
+  }
+}
+
+/* ==========================================================================
+   ASSOCIAÇÕES TIPOGRÁFICAS
+   Normalmente não é necessário editar abaixo desta linha.
+   ========================================================================== */
+
+:root {
+  font-family: var(--font-family-body);
+  font-synthesis: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+/* Equilibra linhas curtas e evita quebrar palavras nos títulos. */
+h1,
+h2,
+h3,
+.chapter-label,
+.scene-kicker,
+.sec-index-label,
+.sec-caption-hint,
+.sec-item-name,
+.hero-film strong,
+.finale-film > span:last-child {
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+/* O navegador favorece uma última linha mais completa nos textos de leitura. */
+.hero-copy p,
+.journey-intro p,
+.section-heading > p,
+.story-copy p,
+.jaguar-copy p,
+.light-title-wrap p,
+.finale-copy > p,
+.sec-detail-description,
+.uv-intro,
+.uv-instructions,
+.uv-guide-description,
+.uv-footnote,
+.footer-row p {
+  text-wrap: pretty;
+  orphans: 2;
+  widows: 2;
+}
+
+.hero-copy h1,
+.origin-continuation h2 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-title-opening);
+  font-weight: 400;
+  line-height: var(--line-height-title-opening);
+  letter-spacing: var(--letter-spacing-title-opening);
+}
+
+.hero-copy h1 .hero-question,
+.origin-continuation .chapter-label {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-opening-kicker);
+  line-height: var(--line-height-opening-kicker);
+  letter-spacing: var(--letter-spacing-opening-kicker);
+}
+
+.hero-copy h1 .hero-question {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.origin-continuation .chapter-label {
+  font-weight: 600;
+}
+
+.portal-copy {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-title-portal);
+  font-weight: 400;
+  line-height: var(--line-height-title-portal);
+  letter-spacing: -.02em;
+}
+
+.journey-intro h2,
+.section-heading h2 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-title-section);
+  font-weight: 400;
+  line-height: var(--line-height-title-section);
+  letter-spacing: -.02em;
+}
+
+.story-copy h3 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-title-story);
+  font-weight: 400;
+  line-height: var(--line-height-title-story);
+  letter-spacing: -.025em;
+}
+
+.jaguar-copy h2,
+.paper-copy h2 {
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+
+.jaguar-copy h2 {
+  font-size: var(--font-size-title-jaguar);
+  line-height: var(--line-height-title-jaguar);
+}
+
+.paper-copy h2 {
+  font-size: var(--font-size-title-paper);
+  line-height: var(--line-height-title-paper);
+  letter-spacing: -.025em;
+}
+
+.light-title-wrap h2,
+.finale-copy h2 {
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+
+.light-title-wrap h2 {
+  font-size: var(--font-size-title-light);
+  line-height: var(--line-height-title-light);
+}
+
+.finale-copy h2 {
+  font-size: var(--font-size-title-finale);
+  line-height: var(--line-height-title-finale);
+}
+
+.footer-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-title-footer);
+  font-weight: 400;
+  line-height: var(--line-height-title-footer);
+  letter-spacing: -.015em;
+}
+
+.chapter-label,
+.scene-kicker {
+  font-size: var(--font-size-chapter-label);
+  font-weight: 600;
+  line-height: var(--line-height-chapter-label);
+  letter-spacing: var(--letter-spacing-chapter-label);
+}
+
+.hero-copy p {
+  font-size: var(--font-size-copy-hero);
+  line-height: var(--line-height-copy-hero);
+}
+
+.journey-intro p,
+.section-heading>p {
+  font-size: var(--font-size-copy-section);
+  line-height: var(--line-height-copy-section);
+}
+
+@media (min-width: 1000px) {
+  .security-section .section-heading h2 {
+    font-size: var(--font-size-title-security);
+    line-height: 1.12;
+  }
+
+  .security-section .section-heading>p {
+    font-size: var(--font-size-copy-section);
+    line-height: 1.7;
+  }
+}
+
+.story-copy p {
+  font-size: var(--font-size-copy-story);
+  line-height: var(--line-height-copy-story);
+}
+
+.jaguar-copy p {
+  font-size: var(--font-size-copy-feature);
+  line-height: var(--line-height-copy-feature);
+}
+
+.light-title-wrap p {
+  font-size: var(--font-size-copy-light);
+  line-height: var(--line-height-copy-light);
+}
+
+.finale-copy>p {
+  font-size: var(--font-size-copy-finale);
+  line-height: var(--line-height-copy-finale);
+}
+
+.brand-symbol {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-brand-symbol);
+  line-height: 1;
+  letter-spacing: -.025em;
+}
+
+.brand-symbol span {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-brand-slash);
+  font-weight: 300;
+}
+
+.brand-name {
+  font-size: var(--font-size-brand-name);
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+.site-header nav {
+  font-size: var(--font-size-header-nav);
+}
+
+.header-film {
+  font-size: var(--font-size-header-film);
+  font-weight: 600;
+}
+
+.scroll-cue {
+  font-size: var(--font-size-ui);
+  line-height: 1.6;
+}
+
+
+.hero-film small {
+  font-size: var(--font-size-hero-film-kicker);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: .07em;
+}
+
+.hero-film strong {
+  font-size: var(--font-size-hero-film-title);
+  font-weight: 500;
+}
+
+.hero-caption {
+  font-size: var(--font-size-micro);
+  letter-spacing: .15em;
+}
+
+.story-index {
+  font-size: var(--font-size-ui-small);
+  letter-spacing: .16em;
+}
+
+.finale-film {
+  font-size: var(--font-size-finale-film-title);
+}
+
+.finale-film small {
+  font-size: var(--font-size-finale-film-caption);
+}
+
+.footer-row {
+  font-size: var(--font-size-ui-small);
+  line-height: 1.8;
+}
+
+.footer-row small {
+  font-size: var(--font-size-caption);
+}
+
+.footer-row button,
+.footer-row a {
+  font-size: var(--font-size-ui-small);
+}
+
+
+@media (max-width: 639px) {
+
+  .hero-film small {
+    white-space: nowrap;
+    letter-spacing: .04em;
+  }
+
+  .story-index,
+  .scene-kicker {
+    font-size: var(--font-size-caption);
+  }
+
+  .paper-copy .chapter-label {
+    font-size: var(--font-size-micro);
+    letter-spacing: .12em;
+  }
+
+
+  .footer-row,
+  .footer-row button,
+  .footer-row a {
+    font-size: var(--font-size-caption);
+  }
+
+  .footer-row small {
+    font-size: var(--font-size-micro);
+  }
+
+  .footer-row p {
+    line-height: 1.9;
+  }
+}
+
+/* Exploração da cédula */
+.sec-atlas,
+.uv-laboratory {
+  font-family: var(--font-family-body);
+}
+
+.sec-atlas button,
+.uv-laboratory button {
+  font-family: inherit;
+}
+
+.sec-face-switch button {
+  font-size: var(--font-size-security-face);
+  font-weight: 600;
+}
+
+.sec-face-switch button span {
+  font-size: var(--font-size-security-face-index);
+}
+
+.sec-toolbar-hint,
+.sec-note-loader {
+  font-size: var(--font-size-security-hint);
+  line-height: 1.5;
+}
+
+.sec-hotspot {
+  font-size: var(--font-size-security-hotspot);
+  font-weight: 700;
+}
+
+.sec-caption {
+  font-size: var(--font-size-security-caption);
+  line-height: 1.6;
+}
+
+.sec-detail-index {
+  font-size: var(--font-size-security-detail-label);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.sec-detail-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-security-detail-title);
+  font-weight: 400;
+  line-height: var(--line-height-security-detail-title);
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+
+.sec-detail-description {
+  font-size: var(--font-size-security-detail-copy);
+  line-height: var(--line-height-security-detail-copy);
+}
+
+.sec-macro figcaption {
+  font-size: var(--font-size-security-macro-caption);
+  line-height: 1.5;
+}
+
+.sec-index-label {
+  font-size: var(--font-size-security-list-label);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.sec-item {
+  line-height: var(--line-height-security-list-item);
+}
+
+.sec-item-number {
+  font-size: var(--font-size-security-list-number);
+  font-variant-numeric: tabular-nums;
+}
+
+.sec-item-name {
+  font-size: var(--font-size-security-list-item);
+  font-weight: 500;
+}
+
+.sec-item[aria-pressed=true] .sec-item-name {
+  font-weight: 800;
+}
+
+.sec-material-mark {
+  font-size: 26px;
+  letter-spacing: -.04em;
+}
+
+.sec-material-mark strong {
+  font-size: 39px;
+  line-height: 1.1;
+}
+
+.sec-material-mark sup {
+  font-size: 16px;
+}
+
+.sec-material-mark small {
+  font-size: var(--font-size-tiny);
+  line-height: 1.6;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Exploração UV */
+.uv-eyebrow {
+  font-size: var(--font-size-uv-eyebrow);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.uv-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-uv-title);
+  font-weight: 400;
+  line-height: var(--line-height-uv-title);
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+
+.uv-intro {
+  font-size: var(--font-size-uv-intro);
+  line-height: var(--line-height-uv-intro);
+}
+
+.uv-mode-label {
+  font-size: var(--font-size-tiny);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.uv-instructions {
+  font-size: var(--font-size-uv-instructions);
+  line-height: 1.6;
+}
+
+.uv-modes button {
+  font-size: var(--font-size-uv-control);
+}
+
+.uv-modes button span {
+  font-size: 18px;
+}
+
+.uv-modes .uv-zoom-copy,
+.uv-modes .uv-mode-copy {
+  font-size: inherit;
+}
+
+.uv-guide-label {
+  font-size: var(--font-size-micro);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.uv-guide-button span:first-child {
+  font-size: var(--font-size-micro);
+}
+
+.uv-guide-button span:last-child {
+  font-size: var(--font-size-uv-guide-title);
+}
+
+.uv-original-macro figcaption {
+  font-size: var(--font-size-hairline);
+}
+
+.uv-guide-detail h3 {
+  font-size: var(--font-size-uv-guide-detail-title);
+  font-weight: 500;
+}
+
+.uv-guide-description {
+  font-size: var(--font-size-uv-guide-copy);
+  line-height: 1.7;
+}
+
+.uv-footnote {
+  font-size: var(--font-size-tiny);
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .uv-eyebrow {
+    letter-spacing: .14em;
+  }
+
+  .uv-mode-label,
+  .uv-original-macro figcaption,
+  .uv-footnote {
+    font-size: var(--font-size-hairline);
+  }
+
+  .uv-instructions {
+    line-height: 1.7;
+  }
+
+  .uv-modes button {
+    line-height: 1.5;
+  }
+
+  .uv-guide-label,
+  .uv-guide-button span:first-child {
+    font-size: var(--font-size-tiny);
+  }
+
+  .sec-material-mark {
+    font-size: 15px;
+  }
+
+  .sec-material-mark strong {
+    font-size: 25px;
+  }
+
+  .sec-material-mark sup {
+    font-size: 10px;
+  }
+
+  .sec-material-mark small {
+    font-size: var(--font-size-hairline);
+  }
+}
+
+@media (min-width: 1000px) {
+  .sec-index-label {
+    letter-spacing: .075em;
+  }
+}
+
+/* Player do filme */
+.film-dialog {
+  font-family: var(--font-family-body);
+}
+
+.film-dialog .film-title {
+  font-family: inherit;
+  font-size: var(--font-size-film-title);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.film-title span {
+  font-weight: 400;
+}
+
+.film-dialog .film-button {
+  font-family: inherit;
+  font-size: var(--font-size-film-button);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .04em;
+  text-transform: none;
+}
+
+.film-dialog .film-footer p {
+  font-family: inherit;
+  font-size: var(--font-size-film-caption);
+  line-height: 1.6;
+  letter-spacing: .03em;
+}
+
+.film-download {
+  font-size: var(--font-size-film-button);
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .film-dialog .film-title {
+    letter-spacing: .1em;
+  }
+
+  .film-title span {
+    font-size: var(--font-size-tiny);
+  }
+}
